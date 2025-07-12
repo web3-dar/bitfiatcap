@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import {  FaEye, FaEyeSlash,  FaSadCry } from "react-icons/fa";
 import { getUsers } from "../backend/api"; // Import getUsers function from api.ts
 
 import logo from "../assets/logo.png";
-import lom from "../assets/zelle.webp";
+// import lom from "../assets/zelle.webp";
 import lol from '../assets/logo.png'
+import Header from "../Home/header";
+import Footer from "../Home/footer";
 // import bgimg from "../assets/bg.jpg";
 
 const LoginForm: React.FC = () => {
@@ -119,6 +121,8 @@ const LoginForm: React.FC = () => {
   
   
   return (
+    <>
+    <Header/>
     <div
       className="flex justify-center items-center min-h-screen relative bg-cover bg-center"
       // style={{ backgroundImage: `url(${bgimg})` }}
@@ -145,7 +149,7 @@ const LoginForm: React.FC = () => {
       ) : (
         <div className="flex z-10 w-full  justify-center items-center min-h-screen p-4">
           <div className="  rounded p-8 w-full max-w-md">
-            <img src={logo} alt=""  width={500} className="m-auto mb-3"/>
+            <img src={logo} alt=""  width={200} className="m-auto mb-3"/>
             
             
 
@@ -158,9 +162,9 @@ const LoginForm: React.FC = () => {
       type="text"
       value={emailOrAccount}
       onChange={(e) => setEmailOrAccount(e.target.value)}
-      placeholder="User ID"
+      placeholder="User ID / Email"
       required
-      className="flex-grow bg-transparent outline-none text-sm placeholder-red-700 placeholder:text-[18px] placeholder:font-semibold"
+      className="flex-grow bg-transparent outline-none text-sm placeholder-blue-700 placeholder:text-[18px] placeholder:font-semibold"
     />
   </label>
 </div>
@@ -191,14 +195,14 @@ const LoginForm: React.FC = () => {
 
                <div className="flex items-center gap-2">
     <input type="checkbox" id="saveUserId" className="w-4 h-4 text-blue-600 mt-4 border-2 border-blue-600 rounded-full focus:ring-blue-500"/>
-    <label  className="text-red-700 text-sm mt-4">Save User ID</label>
+    <label  className="text-blue-700 text-sm mt-4">Save User ID</label>
   </div>
 
               
 <div className="m-auto flex justify-center">
   <button
                 type="submit"
-                className="bg-red-900 text-white font-bold py-2 px-6 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="bg-blue-900 text-white font-bold py-2 px-6 rounded hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 LOG IN
               </button>
@@ -207,12 +211,26 @@ const LoginForm: React.FC = () => {
 
 
             </form>
-<div className="m-auto flex justify-center">
-            <a href="#" className="text-red-600 mt-5 text-sm hover:underline mb-8">Forgot ID/Password</a>
-    
-
-  </div>
-
+<div className="text-center mt-6 space-y-2 text-sm">
+      <p className="text-gray-700">
+        Don’t have an account yet?{" "}
+        <Link
+          to="/signup"
+          className="text-blue-600 font-semibold hover:underline"
+        >
+          Create an Account Now!
+        </Link>
+      </p>
+      <p className="text-gray-700">
+        Forgot your password?{" "}
+        <Link
+          to="/"
+          className="text-blue-600 font-semibold hover:underline"
+        >
+          Reset Password Now!
+        </Link>
+      </p>
+    </div>
            
             {/* <div className="flex items-center my-4">
   <div className="flex-grow border-t border-gray-400"></div>
@@ -229,7 +247,7 @@ const LoginForm: React.FC = () => {
            </div> */}
 
           
- <img src={lom} alt=""  className="mt-9"/>
+ {/* <img src={lom} alt=""  className="mt-9"/> */}
              
            
            
@@ -265,6 +283,8 @@ const LoginForm: React.FC = () => {
         </div>
       )}
     </div>
+    <Footer/>
+    </>
   );
 };
 

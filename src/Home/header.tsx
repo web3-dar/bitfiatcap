@@ -62,7 +62,7 @@ const Header: React.FC = () => {
                 <Link
                   key={item}
                   to={`/`}
-                  className="text-gray-700 hover:text-purple-600 font-medium"
+                  className="text-gray-700 hover:text-blue-600 font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   {item}
