@@ -1,88 +1,126 @@
+import { motion } from "framer-motion";
+import { CheckCircle } from "lucide-react";
 
-import womanImage from '../assets/Homepage-Rate-Cards.webp'; // Replace with actual path
+const RatesSection = () => {
+  const steps = [
+    "Create your free account",
+    "Verify your identity securely",
+    "Choose a mining plan that fits your goals",
+    "Watch your investment grow in real time",
+  ];
 
-const rates = [
-  {
-    title: 'VISA',
-    rateType: 'VARIABLE APR',
-    rateValue: '11.99%',
-    subLabel: 'AS LOW AS',
-    footer: 'LEARN MORE',
-    icon: '💳', // Replace with actual icon or component
-  },
-  {
-    title: 'AUTO',
-    rateType: 'APR',
-    rateValue: '5.69%',
-    subLabel: 'AS LOW AS',
-    footer: 'LEARN MORE',
-    icon: '🚗',
-  },
-  {
-    title: 'PERSONAL PROMO CDS',
-    rateType: 'APY',
-    rateValue: '4.30%',
-    subLabel: 'AS HIGH AS',
-    footer: 'LEARN MORE',
-    icon: '💼',
-  },
-  {
-    title: 'HIGH YIELD ONLINE SAVINGS',
-    rateType: 'APY',
-    rateValue: '3.55%',
-    subLabel: 'AS HIGH AS',
-    footer: 'LEARN MORE',
-    icon: '💰',
-  },
-];
-
-export default function RatesSection() {
   return (
-    <section className="bg-white py-12 px-6">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-10">
-        {/* Left image */}
-        <div className="flex-1">
-          <img
-            src={womanImage}
-            alt="Woman using credit card"
-            className="rounded-xl object-cover w-full"
-          />
-        </div>
+    <>
+    <section className="bg-white py-20 px-6 lg:px-20">
+      <div className="max-w-6xl mx-auto">
+        {/* Heading Animation */}
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-2xl lg:text-5xl font-extrabold text-blue-800 text-center mb-10"
+        >
+          How BitFiat Capital Works
+        </motion.h2>
 
-        {/* Right grid */}
-        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {rates.map((item, idx) => (
-            <div
-              key={idx}
-              className={`p-6 rounded-xl border shadow-sm hover:shadow-md transition duration-300 ${
-                idx === 0 ? 'bg-green-700 text-white' : 'bg-gray-100 text-gray-800'
-              } hover:border-red-600 hover:text-red-800 cursor-pointer`}
-            >
-              <div className="text-lg font-semibold mb-2 flex items-center gap-2">
-                <span>{item.icon}</span> <span>{item.title}</span>
-              </div>
-              <div className="text-sm uppercase tracking-wide text-gray-600 dark:text-gray-300">
-                {item.subLabel}
-              </div>
-              <div className="text-4xl font-bold my-2">{item.rateValue}</div>
-              <div className="text-sm uppercase mb-4">{item.rateType}</div>
-              <button className="text-sm font-bold hover:underline flex items-center gap-1">
-                {item.footer} <span>&rarr;</span>
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
+        <div className="flex flex-col lg:flex-row items-center gap-10">
+          {/* Left: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="lg:w-1/2"
+          >
+            <p className="text-gray-700 text-lg leading-relaxed">
+              At <strong>BitFiat Capital</strong>, we simplify access to the world of
+              crypto mining and digital asset growth.
+              <br /><br />
+              Our infrastructure is powered by state-of-the-art mining equipment and a secure, high-performance network—delivering consistent results for all participants.
+              <br /><br />
+              Whether you're starting small or managing large-scale investments, our system is designed to help you succeed in the crypto market.
+            </p>
 
-      {/* Footer note */}
-      <div className="text-sm text-center text-gray-600 mt-10">
-        <div className="flex justify-center items-center gap-2 text-red-800 font-semibold">
-          <span>🕒</span> RATES UPDATED DAILY
+            <ul className="mt-6 space-y-4">
+              {steps.map((step, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <CheckCircle className="text-blue-600 mt-1" size={20} />
+                  <span className="text-blue-800 font-medium text-base leading-snug">
+                    {step}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Right: Image or Illustration (optional) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+            className="lg:w-1/2"
+          >
+            {/* Add your image or animation here if needed */}
+          </motion.div>
         </div>
-        <p className="mt-1 text-gray-500 text-xs">
-          APR = Annual Percentage Rate &nbsp;&nbsp;&nbsp; APY = Annual Percentage Yield
-        </p>
       </div>
     </section>
+     <section className="bg-blue-50 py-20 px-6 lg:px-20">
+      <div className="max-w-6xl mx-auto">
+        {/* Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-2xl lg:text-5xl font-extrabold text-blue-800 text-center mb-10"
+        >
+          Why BitFiat Capital?
+        </motion.h2>
+
+        <div className="flex flex-col lg:flex-row gap-12 items-center">
+          {/* Left Text Content */}
+          <motion.div
+            className="lg:w-1/2"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9 }}
+          >
+            <p className="text-lg text-gray-800 leading-relaxed mb-6">
+              <strong>BitFiat Capital</strong> is a global leader in crypto asset management, offering a smart and secure way to mine top digital currencies without stress. Our mining platform is built to maximize returns using reliable technologies and industry-best practices.
+            </p>
+
+            <p className="text-lg text-gray-800 leading-relaxed mb-6">
+              We utilize powerful networks across coins like <strong>ETH</strong>, <strong>USDT</strong>, and other major assets to enable safe and profitable crypto activities — all within a user-friendly ecosystem.
+            </p>
+
+            <p className="text-lg text-gray-800 leading-relaxed">
+              We’re passionate about blockchain’s future and committed to helping you grow. Our team delivers valuable insights, trend analysis, and tools to help you make confident, informed investment decisions.
+            </p>
+          </motion.div>
+
+          {/* Right: Embedded YouTube Widget */}
+         <motion.div
+  className="w-full"
+  initial={{ opacity: 0, scale: 0.95 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 1, delay: 0.3 }}
+>
+  <div className="w-full h-[400px] lg:h-[480px] rounded-xl overflow-hidden shadow-lg">
+    <iframe
+      src="https://www.youtube.com/embed/OZPHtoiEGWI"
+      title="BitFiat Capital Introduction"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowFullScreen
+      className="w-full h-full rounded-xl"
+    ></iframe>
+  </div>
+</motion.div>
+
+
+        </div>
+      </div>
+    </section>
+    </>
   );
-}
+};
+
+export default RatesSection;

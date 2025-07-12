@@ -1,55 +1,48 @@
-// promotions.tsx
-import img1 from '../assets/pos.jpg'
-import img2 from '../assets/pos2.jpg'
-import img3 from '../assets/pos3.jpg'
+import hero from "../assets/heroooo.png"
+import { motion } from "framer-motion";
 
-const promotions = [
-  {
-    title: 'Cell Phone Protection',
-    description:
-      'With CKT Reserved and Trust Bank’s Central Plus Checking, receive up to $800 if your phone is stolen or damaged.',
-    buttonText: 'LEARN MORE',
-    imageUrl: img1,
-  },
-  {
-    title: 'Enroll in My Credit Today',
-    description:
-      'Check your credit score anytime, anywhere with CKT Reserved and Trust Bank’s FREE mobile and online banking tool.',
-    buttonText: 'LEARN MORE',
-    imageUrl: img2,
-  },
-  {
-    title: 'MoneyEdu Financial Wellness',
-    description:
-      'Take control of your student loans — enroll in CKT Reserved and Trust Bank’s FREE Managing Student Loans course!',
-    buttonText: 'TAKE THE COURSE',
-    imageUrl: img3,
-  },
-];
 
 
 const Promotions = () => {
   return (
-    <section className="bg-white py-12 px-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {promotions.map((promo, idx) => (
-          <div key={idx} className="border rounded-xl shadow-md overflow-hidden">
-            <img
-              src={promo.imageUrl}
-              alt={promo.title}
-              className="w-full h-64 object-cover"
-            />
-            <div className="bg-red-50 p-6">
-              <h3 className="text-xl font-bold text-red-800 mb-2">{promo.title}</h3>
-              <p className="text-red-800 mb-4">{promo.description}</p>
-              <button className="text-red-800 font-semibold flex items-center gap-1 hover:underline">
-                {promo.buttonText} <span>&rarr;</span>
-              </button>
-            </div>
-          </div>
-        ))}
+   
+       <section className="bg-blue-50  py-20 px-6 lg:px-20">
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-10">
+        {/* Left: Text Content with Animation */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="lg:w-1/2"
+        >
+          <h2 className="text-2xl  text-center lg:text-5xl font-extrabold text-blue-700 mb-6">
+            Who We Are
+          </h2>
+          <p className="text-gray-800 text-lg leading-relaxed">
+            <strong>BitFiat Capital</strong> is a pioneering digital asset management firm, established in 2018 to help individuals and organizations harness the full potential of cryptocurrency mining.
+            <br /><br />
+            We offer seamless access to mining operations and early-stage investment in emerging blockchain technologies. Whether you're new to crypto or an enterprise scaling fast, our secure and intelligent platform is built to support your financial growth.
+            <br /><br />
+            At BitFiat Capital, we’re not just mining coins — we’re building the future of decentralized finance.
+          </p>
+        </motion.div>
+
+        {/* Right: Animated Illustration/Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+          className="lg:w-1/2"
+        >
+          <img
+            src={hero} // Replace with your image path
+            alt="Crypto Mining Illustration"
+            className="w-full "
+          />
+        </motion.div>
       </div>
     </section>
+    
   );
 };
 
