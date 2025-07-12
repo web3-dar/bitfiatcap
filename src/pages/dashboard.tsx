@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {  Link, useNavigate } from "react-router-dom";
 import { FaArrowAltCircleRight,  FaSearch } from 'react-icons/fa';
+import axios from "axios";
 import {
   // FaSyncAlt,
   // FaEye,
@@ -11,26 +12,31 @@ import {
   FaShoppingCart,
   FaEnvelope,
 } from "react-icons/fa";
-// import {
-//   FaUniversity,
-//   FaExchangeAlt,
-//   FaMoneyBillAlt,
-//   FaRegCheckSquare,
 
-// } from 'react-icons/fa';
 import lol from '../assets/logo.png'
-import { FaRegCopy, FaEye, FaArrowUpRightFromSquare } from "react-icons/fa6";
-import bg from "../assets/her2.jpg"; // your uploaded image
-// import StatComponent from "../components/stats";
-// import BottomNav from "./stickyNav";
+import log1 from '../assets/background.jpg'
+import { Plus } from "lucide-react";
+
 import person from '../assets/person_1.jpg'
 import BottomNav from "./stickyNav";
 import BottomNav2 from "./bottomnav2";
 import SupportBot from "../components/support";
-// import { sub } from "date-fns";
+import CoinGeckoWidget from "../components/coingecko";
 
-// import Blog from "../Home/blog";
-// import BottomNav from "./stickyNav";
+
+
+
+interface Crypto {
+  id: string;
+  name: string;
+  symbol: string;
+  image: string;
+  current_price: number;
+  price_change_percentage_24h: number;
+}
+
+
+
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -48,7 +54,54 @@ const Dashboard = () => {
   const [AcctNum, setAcctNumber] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
 const [showViewModal, setShowViewModal] = useState(false);
+const [btcRate, setBtcRate] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
+ const [cryptoData, setCryptoData] = useState<Crypto[]>([]);
 
+
+    useEffect(() => {
+    const fetchCryptoData = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.coingecko.com/api/v3/coins/markets",
+          {
+            params: {
+              vs_currency: "usd",
+              order: "market_cap_desc",
+              per_page: 10,
+              page: 1,
+              sparkline: false,
+            },
+          }
+        );
+        setCryptoData(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching crypto data:", error);
+      }
+    };
+
+    fetchCryptoData();
+  }, []);
+
+
+
+ useEffect(() => {
+    const fetchBTCPrice = async () => {
+      try {
+        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd");
+        const data = await res.json();
+        setBtcRate(data.bitcoin.usd);
+      } catch (error) {
+        console.error("Failed to fetch BTC rate:", error);
+      }
+    };
+
+    fetchBTCPrice();
+  }, []);
+
+
+  const btcValue = btcRate ? (userAmount / btcRate).toFixed(8) : null;
 
 
   console.log(userImage,subType,userLastName,useMidname)
@@ -100,36 +153,7 @@ const [showViewModal, setShowViewModal] = useState(false);
   }
 
 
-  // const allTransactions = [
-  //   { type: "Deposit", amount: userAmount , date: "2025-02-11 09:00:00" },
-
-  // ];
-
-  // const getGreeting = () => {
-  //   const hour = new Date().getHours();
-  //   if (hour < 12) return "Good morning";
-  //   if (hour < 18) return "Good afternoon";
-  //   return "Good evening";
-  // };
-
-  // const loadMoreTransactions = () => {
-  //   setVisibleTransactions((prev) =>
-  //     Math.min(prev + 4, allTransactions.length)
-  //   );
-  // };
-
-  // const maskBalance = (amount: number) => {
-  //   return amount.toLocaleString().replace(/\d/g, "*");
-  // };
-
-  // const refreshPage = () => {
-  //   window.location.reload();
-  // };
-
-  // const toggleBalanceVisibility = () => {
-  //   setShowBalance((prev) => !prev);
-  // };
-
+ 
   return (
     <>
       <div className=" flex flex-col ">
@@ -172,7 +196,7 @@ const [showViewModal, setShowViewModal] = useState(false);
         <div>
           
         </div>
-        <div className="text-red-700 text-center border-b-2 border-red-700  m-auto font-medium  py-2 px-4 text-[15px]">
+        <div className="text-blue-700 text-center border-b-2 border-blue-700  m-auto font-medium  py-2 px-4 text-[15px]">
           Accounts
         </div>
         <div className="text-gray-500 text-center m-auto py-2 px-4 text-[15px]">Dashboard</div>
@@ -196,64 +220,60 @@ const [showViewModal, setShowViewModal] = useState(false);
       </div> */}
     </div>
 
+   
 
 
 
-        <hr />
 
- <div className="w-[90%] h-[233px] m-auto p-4 rounded-xl relative overflow-hidden shadow-lg">
-      {/* Background Image with red overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${bg})`,
-        }}
-      >
-        <div className="absolute inset-0 bg-red-800 opacity-50"></div>
+       
+<div className="py-2 space-y-6 w-[90%] mx-auto font-sans">
+  {/* Current Balance */}
+<div className="relative rounded-xl overflow-hidden shadow-md w-full">
+      {/* Background image + dark overlay */}
+      <div className="absolute inset-0">
+        <img
+          src={log1}
+          alt="background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black opacity-60" />
       </div>
 
       {/* Content */}
-      <div className="w-[90%] max-w-sm h-[153px] rounded-xl relative overflow-hidden shadow-lg mx-auto">
-  {/* Background Image */}
-  <div
-    className="absolute inset-0 bg-cover bg-center"
-    style={{
-      backgroundImage: `url(${bg})`,
-    }}
-  >
-    <div className="absolute inset-0 bg-red-800 opacity-50"></div>
-  </div>
+      <div className="relative z-10 text-white p-5 py-[100px] flex justify-between items-center">
+        <div>
+          <p className="text-sm opacity-80">Current Balance</p>
+          <h3 className="text-3xl font-bold">
+            {new Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
+            }).format(userAmount)}
+          </h3>
 
-  {/* Card Content */}
-  <div className="relative z-10 p-4 text-white h-full w-full flex flex-col justify-between">
-    <div className="flex justify-start gap-2 items-center">
-      <p className="tracking-widest text-sm">{AcctNum}</p>
-      <FaRegCopy className="text-white cursor-pointer" />
+          {btcValue && (
+            <p className="text-sm mt-2 text-white opacity-90">
+              ≈ {btcValue} BTC 
+            </p>
+          )}
+        </div>
+        <button className="bg-white text-blue-600 p-2 rounded-full shadow-sm">
+          <Plus />
+        </button>
+      </div>
     </div>
 
-    <div>
-      <p className="text-sm flex items-center gap-1">
-        Available Balance <FaEye className="inline-block text-sm" />
-      </p>
-     <p className="text-2xl font-bold">
-  {new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(userAmount)}
-</p>
 
-
-    </div>
-
-    <div className="absolute top-2 right-2">
-      <FaArrowUpRightFromSquare className="text-white text-lg" />
-    </div>
-  </div>
+  {/* Upcoming Payments */}
+ 
 </div>
 
-    </div>
 
-     <div className="grid grid-cols-2 gap-2 p-2 lg:flex lg:flex-wrap lg:gap-3">
+<div className="py-6">
+  <CoinGeckoWidget/> 
+</div>
+     
+
+     {/* <div className="grid grid-cols-2 gap-2 p-2 lg:flex lg:flex-wrap lg:gap-3">
   <button
     className="flex items-center text-red-600 p-2 bg-purple-50 rounded-lg shadow w-full lg:w-[48%]"
     onClick={() => navigate("/send")}
@@ -293,11 +313,12 @@ const [showViewModal, setShowViewModal] = useState(false);
     </div>
     <p className="ml-2 text-sm font-semibold">Need Help?</p>
   </button>
-</div>
+</div> */}
 
 
 <SupportBot/>
 
+ 
 
         {/* Main Content */}
         <div className="p-4 space-y-4 bg-gray-100 ">
@@ -310,14 +331,15 @@ const [showViewModal, setShowViewModal] = useState(false);
         <hr />
         
 
-        <div className="flex gap-2 items-center">
-          <div><FaArrowAltCircleRight/></div>
-          <div>
-            <p className="font-medium">CKT Reserved & Trust Bank Life Plan®</p>
-            <p className="text-sm text-gray-500">Set + track goals with personalized guidance</p>
-          </div>
-          <span className="text-xl text-gray-400">&gt;</span>
-        </div>
+       <div className="flex gap-2 items-center">
+  <div><FaArrowAltCircleRight className="text-blue-600" /></div>
+  <div>
+    <p className="font-medium">BitFiat Capital Mining Plan</p>
+    <p className="text-sm text-gray-500">Start earning crypto daily with automated mining solutions</p>
+  </div>
+  <span className="text-xl text-gray-400">&gt;</span>
+</div>
+
 
         <div className="flex justify-between items-center pt-2">
           <p className="font-medium">My Rewards</p>
@@ -327,47 +349,61 @@ const [showViewModal, setShowViewModal] = useState(false);
 
       {/* Bank Balance */}
       <div className="bg-white rounded-xl shadow overflow-hidden">
-        <div className="bg-red-800 text-white px-5 py-3 text-xl font-semibold">
-          CKT Reserved & Trust Bank
-        </div>
-        <div className="p-4">
-          <p className="text-sm text-gray-500">Adv Reserved – 5542</p>
-          <div className="flex justify-between items-center mt-1">
-          <p className="text-2xl font-bold">
-  {new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(userAmount)}
-</p>
+  {/* Header */}
+  <div className="bg-blue-800 text-white px-5 py-3 text-xl font-semibold">
+    BitFiat Capital
+  </div>
 
-            <button   onClick={() => setShowViewModal(true)} className="text-sm text-red-800 font-semibold bg-gray-100 px-3 py-1 rounded-full">
-              VIEW
-            </button>
-          </div>
-        </div>
-        <div className="text-center text-red-800 text-sm py-2  font-bold border-t cursor-pointer">
-          OPEN NEW ACCOUNT
-        </div>
-      </div>
-      <div className="bg-white rounded-xl shadow overflow-hidden">
-       
-        <div className="p-4">
-          <p className="text-sm text-gray-500">{accountType}</p>
-          <div className="flex justify-between items-center mt-1">
-          <p className="text-2xl font-bold">
-            {subType}
+  {/* Main Content */}
+  <div className="p-4">
+    <p className="text-sm text-gray-500">Crypto Wallet – BTC-5542</p>
+    <div className="flex justify-between items-center mt-1">
+      <p className="text-2xl font-bold">
+        {new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(userAmount)}
+      </p>
 
-</p>
+      <button
+        onClick={() => setShowViewModal(true)}
+        className="text-sm text-blue-800 font-semibold bg-blue-100 px-3 py-1 rounded-full"
+      >
+        VIEW
+      </button>
+    </div>
+  </div>
 
-            <button  onClick={() => setShowViewModal(true)} className="text-sm text-red-800 font-semibold bg-gray-100 px-3 py-1 rounded-full">
-              VIEW
-            </button>
-          </div>
-        </div>
-        <div className="text-center text-red-800 text-sm py-2  font-bold border-t cursor-pointer">
-          OPEN NEW ACCOUNT
-        </div>
-      </div>
+  {/* Footer Link */}
+  <div className="text-center text-blue-800 text-sm py-2 font-bold border-t cursor-pointer hover:bg-blue-50">
+    OPEN NEW INVESTMENT
+  </div>
+</div>
+
+    <div className="bg-white rounded-xl shadow overflow-hidden">
+  {/* Card Body */}
+  <div className="p-4">
+    {/* Account Type */}
+    <p className="text-sm text-gray-500">{accountType}</p>
+
+    {/* Subtype and View Button */}
+    <div className="flex justify-between items-center mt-1">
+      <p className="text-2xl font-bold text-blue-900">{subType}</p>
+      <button
+        onClick={() => setShowViewModal(true)}
+        className="text-sm text-blue-800 font-semibold bg-blue-100 px-3 py-1 rounded-full hover:bg-blue-200 transition"
+      >
+        VIEW
+      </button>
+    </div>
+  </div>
+
+  {/* Open New Investment CTA */}
+  <div className="text-center text-blue-800 text-sm py-2 font-bold border-t cursor-pointer hover:bg-blue-50 transition">
+    OPEN NEW INVESTMENT
+  </div>
+</div>
+
 
       {showViewModal && (
   <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center px-4">
@@ -379,15 +415,15 @@ const [showViewModal, setShowViewModal] = useState(false);
         &times;
       </button>
 
-      <h2 className="text-xl font-bold text-center mb-6">CKT Reserved & Trust Bank</h2>
+      <h2 className="text-xl font-bold text-center mb-6">CURRENT INVESTMENT</h2>
 
       <div className="mb-6 text-sm text-gray-700">
         <p>Welcome, {userName} {userLastName}</p>
-        <p>Account Number: <strong>{AcctNum}</strong></p>
-        <p>Routine Number: <strong>233293939</strong></p>
+        <p>USER ID: <strong>{AcctNum}</strong></p>
+        {/* <p>Routine Number: <strong>233293939</strong></p> */}
         <p>Account Balance: <strong>${userAmount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</strong></p>
-        <p>Last Deposit Date: <strong>July 11, 2025</strong></p>
-        <p>Deposit Reference Number: <strong>2234-WN7823490</strong></p>
+        {/* <p>Last Deposit Date: <strong>July 11, 2025</strong></p> */}
+        <p> Reference Number: <strong>2234-WN7823490</strong></p>
         <p className="text-green-600 font-semibold mt-2">Status: Funds Available for Payout</p>
       </div>
 
@@ -403,74 +439,37 @@ const [showViewModal, setShowViewModal] = useState(false);
           </thead>
           <tbody>
 
- <tr>
-              <td className="border px-3 py-2">2025-11-07</td>
-              <td className="border px-3 py-2 text-green-600 ">Deposit</td>
-              <td className="border px-3 py-2">$300.00</td>
-              <td className="border px-3 py-2 text-green-600">Success</td>
-            </tr>
-            <tr>
-              <td className="border px-3 py-2">2025-11-07</td>
-              <td className="border px-3 py-2 text-green-600">Deposit</td>
-              <td className="border px-3 py-2">$15,000.00</td>
-              <td className="border px-3 py-2 text-green-600">Success</td>
-            </tr>
-           
-            <tr>
-              <td className="border px-3 py-2">2025-08-05</td>
-              <td className="border px-3 py-2 text-green-600">Deposit</td>
-              <td className="border px-3 py-2">$15,000.00</td>
-              <td className="border px-3 py-2 text-green-600">Success</td>
-            </tr>
-            <tr>
-              <td className="border px-3 py-2">2025-07-05</td>
-              <td className="border px-3 py-2 text-green-600">Interest (1%)</td>
-              <td className="border px-3 py-2">$998.25</td>
-              <td className="border px-3 py-2 text-green-600">Success</td>
-            </tr>
-            <tr>
-              <td className="border px-3 py-2">2025-07-03</td>
-              <td className="border px-3 py-2 text-red-600">Service Fee</td>
-              <td className="border px-3 py-2">$45.00</td>
-              <td className="border px-3 py-2 text-green-600">Success</td>
-            </tr>
-            <tr>
-              <td className="border px-3 py-2">2025-07-03</td>
-              <td className="border px-3 py-2 text-red-600">Tax</td>
-              <td className="border px-3 py-2">$30.00</td>
-              <td className="border px-3 py-2 text-green-600">Success</td>
-            </tr>
-            <tr>
-              <td className="border px-3 py-2">2025-07-03</td>
-              <td className="border px-3 py-2 text-red-600">Maintenance</td>
-              <td className="border px-3 py-2">$100.00</td>
-              <td className="border px-3 py-2 text-green-600">Success</td>
-            </tr>
+ 
 
              <tr>
               <td className="border px-3 py-2">2025-07-03</td>
-              <td className="border px-3 py-2 text-green-600">Deposit</td>
-              <td className="border px-3 py-2">$1,000,000.00</td>
+              <td className="border px-3 py-2 text-green-600"> Investment</td>
+              <td className="border px-3 py-2">
+  {new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(userAmount)}
+</td>
+
               <td className="border px-3 py-2 text-green-600">Success</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p className="text-xs text-gray-500 text-center">
-        This dashboard reflects the most current status of your winnings under the Camellia K Talachi Mega Bonus Program.<br />
-        Your deposit has been securely processed by CKT National Reserve. If you have any questions or would like to request a payout, please contact your claim specialist directly.
-      </p>
+     <p className="text-xs text-gray-500 text-center">
+  This dashboard displays the most up-to-date status of your earnings with BitFiat Capital's Crypto Mining Program.<br />
+  Your mining contribution has been securely verified and processed on our blockchain network. For assistance or to request a payout, please contact your assigned account manager.
+</p>
+
     </div>
   </div>
 )}
 
 
       {/* Open Savings CTA */}
-      <div className="bg-red-600 text-white rounded-xl shadow p-4 space-y-1 text-center">
-        <p className="text-lg font-medium">Open a savings account</p>
-        <p className="underline text-sm cursor-pointer">Open an account &gt;</p>
-      </div>
+
+     
     </div>
 
 
@@ -483,7 +482,7 @@ const [showViewModal, setShowViewModal] = useState(false);
 
 <div className="p-5 bg-gray-100"> 
   
-  <div className="bg-white rounded-xl shadow p-8 mb-5 px-5 py-3 ">
+  {/* <div className="bg-white rounded-xl shadow p-8 mb-5 px-5 py-3 ">
         <h2 className="text-xl font-bold">Cash Flow Monitor</h2>
         <p className="text-sm text-gray-600 mt-1">
           Get a comprehensive look at your day-to-day business.
@@ -500,7 +499,58 @@ const [showViewModal, setShowViewModal] = useState(false);
         <div className="mt-4 border-t pt-3">
           <p className="text-red-800 text-sm  text-center font-bold cursor-pointer">CREATE LINK</p>
         </div>
-      </div>
+      </div> */}
+
+      <CoinGeckoWidget/>
+
+      <div className="lg:w-2/3 mt-6  mb-[100px] lg:mt-0">
+            {/* Cryptocurrency List */}
+            <h2 className="text-gray-700 font-medium mb-4 px-4 lg:px-0">
+              Top Cryptocurrencies
+            </h2>
+            <div className="space-y-4 px-4 lg:px-0">
+              {loading ? (
+                <p className="text-center text-gray-500">Loading crypto data...</p>
+              ) : (
+                cryptoData.map((coin) => (
+                  <div
+                    key={coin.id}
+                    className="bg-white shadow-lg p-4 rounded-lg flex items-center justify-between hover:shadow-xl transition"
+                  >
+                    <div className="flex items-center">
+                      <img
+                        src={coin.image}
+                        alt={coin.name}
+                        className="h-10 w-10 mr-4"
+                      />
+                      <div>
+                        <p className="font-semibold">{coin.name}</p>
+                        <p className="text-sm text-gray-500">
+                          {coin.symbol.toUpperCase()}
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-gray-700 font-bold">
+                        ${coin.current_price.toLocaleString()}
+                      </p>
+                      <p
+                        className={`text-sm ${
+                          coin.price_change_percentage_24h > 0
+                            ? "bg-green-500 text-white p-1"
+                            : "text-[#fff] bg-red-500 p-1 "
+                        }`}
+                      >
+                        {coin.price_change_percentage_24h.toFixed(2)}%
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+
  
 
 </div>

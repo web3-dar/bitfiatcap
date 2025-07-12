@@ -34,63 +34,12 @@ const TransactionHistory: React.FC = () => {
        
         {
           type: "Credit",
-          amount: 300.00,
-          label: "Deposit",
+          amount: userAmount,
+          label: "BitFiat Investment",
           icon: "🧾",
           date: "2025-11-07 04:43:00",
         }, 
-        {
-          type: "Credit",
-          amount: 15000.00,
-          label: "Deposit",
-          icon: "🧾",
-          date: "2025-11-07 03:44:00",
-        }, 
-        {
-          type: "Credit",
-          amount: 15000.00,
-          label: "Deposit",
-          icon: "🧾",
-          date: "2025-08-05 05:13:00",
-        }, 
-        {
-          type: "Credit",
-          amount: 998.25,
-          label: "Interest (1%)",
-          icon: "🧾",
-          date: "2025-07-05 08:15:00",
-        }, 
-       
-        {
-          type: "Debit",
-          amount: 45.0,
-          label: "Service Fee",
-          icon: "🧾",
-          date: "2025-07-03 08:15:00",
-        }, 
-        {
-          type: "Debit",
-          amount: 30.0,
-          label: "Tax",
-          icon: "🧾",
-          date: "2025-07-03 8:13:00",
-        },
         
-        {
-          type: "Debit",
-          amount: 100.0,
-          label: "Maintenance",
-          icon: "🧾",
-          date: "2025-07-03 8:10:00",
-        },
-       
-        {
-          type: "Credit",
-          amount: 1000000,
-          label: "UNITED FEDERAL INSURANCE CORPORATION (UFIC)",
-          icon: "💸",
-          date: "2025-07-03 8:00:00",
-        },
       ]);
     }
   }, []);

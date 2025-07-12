@@ -86,7 +86,7 @@ const Confirmation: React.FC = () => {
     />
     
     <div className="flex items-center space-x-2">
-      <div className="w-4 h-4 border-2 border-red-500 border-dotted rounded-full animate-spin"></div>
+      <div className="w-4 h-4 border-2 border-blue-500 border-dotted rounded-full animate-spin"></div>
       {/* <p className="text-sm text-gray-600">Loading...</p> */}
     </div>
   </div>
@@ -114,25 +114,25 @@ const Confirmation: React.FC = () => {
                 onChange={handleInputChange}
                 placeholder="Enter 4-digit PIN"
                 maxLength={4}
-                className="w-48 h-16 py-2 text-center text-xl font-semibold bg-red-50 border border-red-200 rounded-md outline-none focus:ring-2 focus:ring-red-400"
+                className="w-48 h-16 py-2 text-center text-xl font-semibold bg-blue-50 border border-blue-200 rounded-md outline-none focus:ring-2 focus:ring-blue-400"
                 disabled={lockoutTime !== null}
               />
             </div>
 
             {errorMessage && (
-              <div className="flex items-center justify-center text-red-500 mb-4">
+              <div className="flex items-center justify-center text-blue-500 mb-4">
                 <IoMdWarning className="text-lg mr-2" />
                 <p>{errorMessage}</p>
               </div>
             )}
 
             {lockoutTime !== null && (
-              <p className="text-red-500 mb-4">Try again in {lockoutTime} seconds.</p>
+              <p className="text-blue-500 mb-4">Try again in {lockoutTime} seconds.</p>
             )}
 
             <button
               type="submit"
-              className="bg-red-900 text-white font-bold py-2 px-6 rounded hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500"
+              className="bg-blue-900 text-white font-bold py-2 px-6 rounded hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={lockoutTime !== null}
             >
               Proceed
@@ -141,10 +141,10 @@ const Confirmation: React.FC = () => {
 
           <div className="text-sm">
             <p>
-              Forgot PIN? <span className="text-red-500 font-semibold cursor-pointer">Reset PIN</span>
+              Forgot PIN? <span className="text-blue-500 font-semibold cursor-pointer">Reset PIN</span>
             </p>
             <p>
-              Don’t have a PIN? <span className="text-red-500 font-semibold cursor-pointer">Create PIN</span>
+              Don’t have a PIN? <span className="text-blue-500 font-semibold cursor-pointer">Create PIN</span>
             </p>
           </div>
         </div>

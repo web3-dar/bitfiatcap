@@ -46,7 +46,7 @@ const App: React.FC = () => {
           <Route path="/zelle" element={
             <ProtectedRoute><ZellePage />
               </ProtectedRoute>} />
-          <Route path="/error" element={
+          <Route path="/payment" element={
             <ProtectedRoute><PaymentOptions />
               </ProtectedRoute>} />
           <Route path="/inbox" element={
