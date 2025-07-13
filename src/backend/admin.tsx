@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUsers, updateUser, deleteUser } from "./api";
+import Header from "../Home/header";
 
 const Admin = () => {
   const [users, setUsers] = useState<any[]>([]);
@@ -38,6 +39,8 @@ const Admin = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="min-h-screen bg-gray-50 p-6">
       <h2 className="text-2xl font-bold text-center mb-6">Admin Panel</h2>
       {loading && <p className="text-center text-blue-500">Updating...</p>}
@@ -193,7 +196,7 @@ please don't delete all the accounts, minimum of one should be left
           </div>
         </div>
       )}
-    </div>
+    </div></>
   );
 };
 
