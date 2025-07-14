@@ -19,18 +19,19 @@ const HeroSection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
           className="w-full lg:w-1/2 px-6 lg:px-16 py-16"
         >
-          <h1 className="text-4xl lg:text-5xl font-extrabold text-blue-500 mb-6 mt-[100px] leading-tight">
-            EARN UP TO 4X <br /> BITCOIN REWARDS — <br /> DAILY MINING!
-          </h1>
+         <h1 className="text-3xl uppercase lg:text-5xl font-extrabold text-blue-500 mb-6 mt-[100px] leading-tight">
+  Fund Your Account & Earn Up to<br />4× Bitcoin Rewards with Daily Mining
+</h1>
 
-          <p className="text-gray-700 mb-6 text-base lg:text-lg">
-            BitFiat Capital is revolutionizing crypto mining. Get up to{" "}
-            <strong>4X BTC rewards</strong> on cloud mining packages,{" "}
-            <strong>3X on staking</strong>, and{" "}
-            <strong>2X on daily earnings</strong> from referrals and GPU rigs.
-            Enjoy automated payouts, zero maintenance fees, and instant
-            portfolio growth — all on a secure, scalable blockchain infrastructure.
-          </p>
+
+         <p className="text-gray-700 mb-6 text-base lg:text-lg">
+  BitFiat Capital bridges modern banking with crypto mining innovation. 
+  Fund your account and earn up to <strong>4× Bitcoin rewards</strong> through cloud mining, 
+  enjoy <strong>3× returns</strong> on staking, and receive <strong>2× daily payouts</strong> 
+  from referrals and GPU mining. With automated earnings, no maintenance fees, and a secure blockchain foundation, 
+  growing your digital wealth has never been easier or more seamless.
+</p>
+
 
           <Link to="/signup">
             <button className="bg-green-400 text-white px-6 py-3 font-semibold rounded hover:bg-black transition">
