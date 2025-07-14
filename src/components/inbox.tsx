@@ -20,51 +20,56 @@ const messages: Message[] = [
   {
     id: 1,
     icon: <ShieldAlert className="text-red-600" size={24} />,
-    subject: "Transfer Restricted: Tier-2 Required",
-    preview: "Your account requires Tier-2 Reserve Unlock to proceed with outbound transfers.",
-    full: `🚫 Transfer Access Restricted – Tier-2 Compliance Required.
-    
-Your account must fulfill all Tier-2 clearance requirements before you can make any transfers. A reserve unlock payment of $107,544.00 USD is required.`,
+    subject: "Withdrawal Restricted: Tier-2 Clearance Required",
+    preview: "Your BitFiat account requires Tier-2 Unlock to enable withdrawals and outbound transactions.",
+    full: `🚫 Withdrawal Access Restricted – Tier-2 Clearance Required.
+
+To proceed with withdrawals or external transfers, your account must meet Tier-2 compliance. A reserve unlock transaction of $107,544.00 USD is required to complete this process.`,
     date: "July 5, 2025",
     unread: true,
   },
   {
     id: 2,
     icon: <MailWarning className="text-yellow-500" size={24} />,
-    subject: "Important: Account Verification Pending",
-    preview: "We noticed your profile verification is incomplete. Please update your details.",
-    full: `Your profile verification is still pending. Kindly log into your account to upload the required documents to avoid service disruption.`,
+    subject: "Action Required: KYC Verification Incomplete",
+    preview: "Your KYC verification is still pending. Update your documents to continue full access.",
+    full: `We've noticed your KYC (Know Your Customer) verification is incomplete. 
+To avoid any disruption in your mining or banking features, please log in and upload the necessary documents.`,
     date: "July 3, 2025",
     unread: true,
   },
   {
     id: 3,
     icon: <CreditCard className="text-green-600" size={24} />,
-    subject: "Card Issuance Notice",
-    preview: "Your virtual debit card has been approved and will be issued shortly.",
-    full: `Congratulations! Your virtual debit card has been approved. It will be issued to your account within 2–3 business days.`,
+    subject: "Virtual Debit Card Approved",
+    preview: "Your BitFiat virtual debit card has been approved and will be issued shortly.",
+    full: `Great news! Your BitFiat Capital virtual debit card has been successfully approved. 
+The card will be linked to your wallet and issued within 2–3 business days.`,
     date: "July 1, 2025",
     unread: true,
   },
   {
     id: 4,
     icon: <Info className="text-blue-500" size={24} />,
-    subject: "New Feature: Spending Analytics",
-    preview: "Track your monthly spending trends with our new dashboard analytics.",
-    full: `We’ve added a new spending analytics feature in your dashboard. Log in now to explore insights into your financial habits.`,
+    subject: "New Update: Mining & Wallet Insights",
+    preview: "Monitor earnings and spending with the new performance dashboard.",
+    full: `A new analytics feature is now available on your BitFiat dashboard. 
+Track your mining performance, wallet activity, and spending insights in real-time.`,
     date: "June 29, 2025",
     unread: false,
   },
   {
     id: 5,
     icon: <CheckCircle className="text-green-500" size={24} />,
-    subject: "Your Profile Has Been Verified",
-    preview: "Thank you for verifying your account. You now have full access.",
-    full: `We’re happy to inform you that your account verification is now complete. You now have access to all features.`,
+    subject: "KYC Verified — Full Access Granted",
+    preview: "Your identity verification is now complete. Enjoy unrestricted access to all features.",
+    full: `Congratulations! Your KYC verification has been successfully completed. 
+You now have full access to mining rewards, banking services, and referral payouts within BitFiat Capital.`,
     date: "June 25, 2025",
     unread: false,
   },
 ];
+
 
 const InboxPage = () => {
   const [selectedMessage, setSelectedMessage] = useState<Message | null>(null);

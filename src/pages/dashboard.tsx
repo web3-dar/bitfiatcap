@@ -482,13 +482,13 @@ const [btcRate, setBtcRate] = useState<number | null>(null);
 
 <div className="p-5 bg-gray-100"> 
   
-  {/* <div className="bg-white rounded-xl shadow p-8 mb-5 px-5 py-3 ">
+  <div className="bg-white rounded-xl shadow p-8 mb-5 px-5 py-3 ">
         <h2 className="text-xl font-bold">Cash Flow Monitor</h2>
         <p className="text-sm text-gray-600 mt-1">
           Get a comprehensive look at your day-to-day business.
         </p>
         <div className="mt-4 border-t pt-3">
-          <p className="text-red-800 text-sm  text-center font-bold cursor-pointer">VIEW CASH FLOW</p>
+          <p className="text-blue-800 text-sm  text-center font-bold cursor-pointer">VIEW CASH FLOW</p>
         </div>
       </div>
   <div className="bg-white rounded-xl shadow p-8  mb-[100px] px-5 py-3">
@@ -497,9 +497,9 @@ const [btcRate, setBtcRate] = useState<number | null>(null);
          Access your Personal and Small Business accounts from this page.
         </p>
         <div className="mt-4 border-t pt-3">
-          <p className="text-red-800 text-sm  text-center font-bold cursor-pointer">CREATE LINK</p>
+          <p className="text-blue-800 text-sm  text-center font-bold cursor-pointer">CREATE LINK</p>
         </div>
-      </div> */}
+      </div>
 
       <CoinGeckoWidget/>
 
