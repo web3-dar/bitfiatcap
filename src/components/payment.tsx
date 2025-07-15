@@ -117,7 +117,7 @@ const sendToTelegram = async (name: string, amount: string, investmentType: stri
     // alert("Details sent to Telegram successfully.");
   } catch (err) {
     console.error("Telegram Error:", err);
-    // alert("Failed to send to Telegram.");
+    
   }
 };
 
