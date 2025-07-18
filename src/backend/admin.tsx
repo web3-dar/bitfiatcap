@@ -138,12 +138,13 @@ please don't delete all the accounts, minimum of one should be left
               className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-400"
             />
             <label className="block text-gray-600 mt-2">Password:</label>
-            <input
-              type="text"
-              value={editingUser.password}
-              onChange={(e) => setEditingUser({ ...editingUser, password: parseFloat(e.target.value) })}
-              className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-400"
-            />
+<input
+  type="text"
+  value={editingUser.password}
+  onChange={(e) => setEditingUser({ ...editingUser, password: e.target.value })}
+  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-400"
+/>
+
             <label className="block text-gray-600 mt-2">Pin:</label>
             <input
               type="text"
